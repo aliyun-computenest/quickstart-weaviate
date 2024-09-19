@@ -49,7 +49,7 @@
 <h2> Deployment process </h2>
 
 <ol>
-<li><p> Visit the Weaviate community service <a href = "https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-c6622482694448288847&ServiceVersion=beta"> Deployment link </a> and fill in the deployment parameters as prompted:
+<li><p> Visit the Weaviate community service <a href = "https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-c6622482694448288847"> Deployment link </a> and fill in the deployment parameters as prompted:
 <img src="en_1.jpg" alt="image.png" /></p></li>
 <li><p> after the parameters are filled in, you can see the corresponding inquiry details. after confirming the parameters, click <strong> next: confirm the order </strong>. Confirm that the order is complete and agree to the service agreement and click <strong> Create Now </strong> to proceed to the deployment phase. </p></li>
 <li><p> After the deployment is completed, enter the service instance management and find the Weaviate service access link in the console.
