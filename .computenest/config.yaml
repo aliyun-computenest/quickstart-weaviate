@@ -69,8 +69,8 @@ ImageBuilder:
         sudo systemctl enable --now docker.socket
         sudo systemctl enable --now docker.service
 
-        mkdir -p /root/weaviate1
-        cat << EOF > /root/weaviate1/docker-compose.yml
+        mkdir -p /root/weaviate
+        cat << EOF > /root/weaviate/docker-compose.yml
         name: weaviate
         services:
           weaviate:
@@ -115,3 +115,5 @@ ImageBuilder:
           weaviate_data:
             name: app_weaviate_data
         EOF
+        cd /root/weaviate
+        docker compose up -d
