@@ -1,0 +1,5 @@
+parameters:
+  EcsInstanceType: Please fill in
+  InstancePassword: $[iact3-auto]
+  PayType: PostPaid
+templateName: 单机版
