@@ -10,13 +10,16 @@ Service:
           ArtifactId: ${Artifact.EcsImage.ArtifactId}
           ArtifactVersion: ${Artifact.EcsImage.ArtifactVersion}
     TemplateConfigs:
-      - Name: 单机版
-        Url: 'ros_templates/template.yaml'
+    - Name: 单机版
+      Url: 'ros_templates/template.yaml'
   ServiceType: private
   ServiceInfo:
-    Locale: zh-CN
-    ShortDescription: weaviate deploy
-    Image: 'resources/icons/service_logo.png'
+  - Locale: zh-CN
+    Name: ' Weaviate社区版'
+    ShortDescription: "Weaviate是一个开源的向量数据库，它允许你存储数据对象和来自各种机器学习模型的向量嵌入。Weaviate可以无缝扩展到数十亿个数据对象，使其成为构建大规模检索系统的理想选择。\n"
+    Image: 
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/5141674772595072/service-image/c6f11a8d-a203-45c3-bf9b-be378f26ff44.jpg
+    Softwares: []
 Artifact:
   EcsImage:
     ArtifactType: EcsImage
@@ -33,82 +36,82 @@ ImageBuilder:
     InternetMaxBandwidthOut: 5
     CommandType: RunShellScript
     Timeout: 10800
-    Tags: [ ]
+    Tags: []
     CommandContent: |-
-        #!/bin/bash
-        yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-        yum makecache
-        yum install -y curl git docker-ce
-        mkdir -p /etc/docker/
+      #!/bin/bash
+      yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+      yum makecache
+      yum install -y curl git docker-ce
+      mkdir -p /etc/docker/
+      echo '{
+          "default-address-pools": [
+              {
+                  "base": "10.255.0.0/16",
+                  "size": 24
+              }
+          ]
+      }' > /etc/docker/daemon.json
+
+      prefixChinaRegion="cn-"
+      region=$(curl -s http://100.100.100.200/latest/meta-data/region-id)
+
+      if [[ ${region} == ${prefixChinaRegion}* && ${region} != "cn-hongkong" ]]; then
         echo '{
             "default-address-pools": [
                 {
                     "base": "10.255.0.0/16",
                     "size": 24
                 }
+            ],
+            "registry-mirrors": [
+                "https://mirrors-ssl.aliyuncs.com/"
             ]
         }' > /etc/docker/daemon.json
+      fi
 
-        prefixChinaRegion="cn-"
-        region=$(curl -s http://100.100.100.200/latest/meta-data/region-id)
+      sudo systemctl enable --now docker.socket
+      sudo systemctl enable --now docker.service
 
-        if [[ ${region} == ${prefixChinaRegion}* && ${region} != "cn-hongkong" ]]; then
-          echo '{
-              "default-address-pools": [
-                  {
-                      "base": "10.255.0.0/16",
-                      "size": 24
-                  }
-              ],
-              "registry-mirrors": [
-                  "https://mirrors-ssl.aliyuncs.com/"
-              ]
-          }' > /etc/docker/daemon.json
-        fi
-
-        sudo systemctl enable --now docker.socket
-        sudo systemctl enable --now docker.service
-
-        mkdir -p /root/weaviate
-        cat << EOF > /root/weaviate/docker-compose.yml
-        name: weaviate
-        services:
-          weaviate:
-            command:
-              - --host
-              - 0.0.0.0
-              - --port
-              - "8080"
-              - --scheme
-              - http
-            environment:
-              AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "false"
-              AUTHENTICATION_APIKEY_ALLOWED_KEYS: user-a-key,user-b-key
-              AUTHENTICATION_APIKEY_ENABLED: "true"
-              AUTHENTICATION_APIKEY_USERS: user-a,user-b
-              AUTHORIZATION_ENABLE_RBAC: "true"
-              AUTHORIZATION_RBAC_ROOT_USERS: user-a
-              ENABLE_API_BASED_MODULES: "true"
-              PERSISTENCE_DATA_PATH: /var/lib/weaviate
-              QUERY_DEFAULTS_LIMIT: "25"
-            image: cr.weaviate.io/semitechnologies/weaviate:1.29.1
-            networks:
-              default: null
-            ports:
-              - "8080:8080"
-              - "50051:50051"
-            restart: on-failure:0
-            volumes:
-              - type: volume
-                source: weaviate_data
-                target: /var/lib/weaviate
-                volume: {}
-        networks:
-          default:
-            name: app_default
-        volumes:
-          weaviate_data:
-            name: app_weaviate_data
-        EOF
-        cd /root/weaviate
-        docker compose up -d
+      mkdir -p /root/weaviate
+      cat << EOF > /root/weaviate/docker-compose.yml
+      name: weaviate
+      services:
+        weaviate:
+          command:
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8080"
+            - --scheme
+            - http
+          environment:
+            AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "false"
+            AUTHENTICATION_APIKEY_ALLOWED_KEYS: user-a-key,user-b-key
+            AUTHENTICATION_APIKEY_ENABLED: "true"
+            AUTHENTICATION_APIKEY_USERS: user-a,user-b
+            AUTHORIZATION_ENABLE_RBAC: "true"
+            AUTHORIZATION_RBAC_ROOT_USERS: user-a
+            ENABLE_API_BASED_MODULES: "true"
+            PERSISTENCE_DATA_PATH: /var/lib/weaviate
+            QUERY_DEFAULTS_LIMIT: "25"
+          image: cr.weaviate.io/semitechnologies/weaviate:1.29.1
+          networks:
+            default: null
+          ports:
+            - "8080:8080"
+            - "50051:50051"
+          restart: on-failure:0
+          volumes:
+            - type: volume
+              source: weaviate_data
+              target: /var/lib/weaviate
+              volume: {}
+      networks:
+        default:
+          name: app_default
+      volumes:
+        weaviate_data:
+          name: app_weaviate_data
+      EOF
+      cd /root/weaviate
+      docker compose up -d
