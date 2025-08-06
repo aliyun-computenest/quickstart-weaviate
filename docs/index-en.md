@@ -1,60 +1,35 @@
-<h1>Weaviate Community Edition Rapid Deployment </h1>
+# Weaviate Community Edition Quick Deployment
 
-<h2> Overview </h2>
+## Overview
+Weaviate allows you to quickly set up a public and private network disk system. Weaviate supports different cloud storage platforms at the bottom, users do not need to care about physical storage methods in actual use. You can use Weaviate to build personal internet disks, file sharing systems, or public cloud systems for large and small groups. For details, please see [Weaviate official website](https://weaviate.io/developers/weaviate/connections/connect-cloud).
 
-<p>Weaviate allows you to quickly build a public-private network disk system. Weaviate supports different cloud storage platforms at the bottom, users do not need to care about physical storage methods in actual use. You can use Weaviate to build personal internet disks, file sharing systems, or public cloud systems for large and small groups. For more information, see the <a href = "https://weaviate.io/developers/weaviate/connections/connect-cloud">Weaviate website </a>. </p>
+## Billing Description
+Fees on the Weaviate Community Edition mainly relate:
 
-<h2> Billing instructions </h2>
+-Selected vCPU and memory specifications
+-System disk type and capacity
+-public network bandwidth
 
-<p> The costs on the Weaviate Community Edition are mainly related to:</p>
+## Permissions required for RAM accounts
+To deploy Weaviate Community Edition, you need to access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following resources.
+**Note**: This permission is required only when your account is a RAM account.
 
-<ul>
-<li> Selected vCPU and Memory Specifications </li>
-<li> System disk type and capacity </li>
-<li> Internet bandwidth </li>
-</ul>
+| Permission policy name | Comment |
+| ------------------------------------- | ---------------------------- |
+| AliyunECSFullAccess | Permissions to manage ECS instances |
+| AliyunVPCFullAccess | Permissions to manage a VPC |
+| AliyunROSFullAccess | Manage permissions for Resource Orchestration Service (ROS) |
+| AliyunComputeNestUserFullAccess | Manage user-side permissions for the compute nest service (ComputeNest) |
 
-<h2> Permissions required for RAM accounts </h2>
+## Deployment process
+1. Visit the Weaviate Community Edition Service [Deployment Link](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-c6622482694448288847) and fill in the deployment parameters as prompted:
+![image.png](images-en/1.jpg)
 
-<p> To deploy the Weaviate Community Edition, you need to access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following resources.
-<strong> Note </strong>: This permission is required only when your account is a RAM account. </p>
+2. After completing the parameters, you can see the corresponding RFQ details. After confirming the parameters, click **Next: Confirm Order**. Confirm the order and agree to the service agreement and click **Create Now** to enter the deployment phase.
 
-<table>
-<thead>
-<tr>
-<th> Permission policy name </th>
-<th> Remarks </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AliyunECSFullAccess</td>
-<td> Permissions to manage ECS </td>
-</tr>
-<tr>
-<td>AliyunVPCFullAccess</td>
-<td> Permissions for managing VPC networks </td>
-</tr>
-<tr>
-<td>AliyunROSFullAccess</td>
-<td> Manage permissions for Resource Orchestration Services (ROS) </td>
-</tr>
-<tr>
-<td>AliyunComputeNestUserFullAccess</td>
-<td> Manage user-side permissions for the compute nest service (ComputeNest) </td>
-</tr>
-</tbody>
-</table>
+3. After the deployment is complete, enter the service instance management and find the Weaviate service access link in the console.
+![image.png](images-en/2.jpg)
 
-<h2> Deployment process </h2>
-
-<ol>
-<li><p> Visit the Weaviate community service <a href = "https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-c6622482694448288847"> Deployment link </a> and fill in the deployment parameters as prompted:
-<img src="en_1.jpg" alt="image.png" /></p></li>
-<li><p> after the parameters are filled in, you can see the corresponding inquiry details. after confirming the parameters, click <strong> next: confirm the order </strong>. Confirm that the order is complete and agree to the service agreement and click <strong> Create Now </strong> to proceed to the deployment phase. </p></li>
-<li><p> After the deployment is completed, enter the service instance management and find the Weaviate service access link in the console.
-<img src="en_2.jpg" alt="image.png" /></p></li>
-<li><p> Click the link to access the service. Refer to <a href = "https://weaviate.io/developers/weaviate/connections/connect-custom"> Documentation </a> for using client access services.
-<img src="3.jpg" alt="image.png" />
-<img src="4.jpg" alt="image.png" /></p></li>
-</ol>
+4. Click the link to access the service. Refer to [Documentation](https://weaviate.io/developers/weaviate/connections/connect-custom) to use the client to access the service.
+![image.png](images-en/3.jpg)
+![image.png](images-en/4.jpg)
