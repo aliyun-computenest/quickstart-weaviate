@@ -3,3 +3,4 @@ parameters:
   InstancePassword: $[iact3-auto]
   PayType: PostPaid
 templateName: 单机版
+caseId: stc-0f14aacea4c346a1a508
