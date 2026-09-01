@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算巢是阿里云开放给企业应用服务商的服务管理平台。服务商能够在计算巢上发布私有化部署服务，为其客户提供云上软件一键部署的能力；同时也支持全托管模式的服务，赋能服务商托管其客户资源。">
+  <title>Weaviate Community Edition Quick Deployment - Aliyun 计算巢 x Demo</title>
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  
+
+  
+
+  
+  
+
+  
+    <script src="../search/main.js"></script>
+  
+
+  
+
+  <script src="../js/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="logo">
+          <img src="./img/logo-2x.png">
+        </div>
+        <div class="nav-list">
+          <ul>
+          
+              <li><a href="#weaviate-community-edition-quick-deployment">Weaviate Community Edition Quick Deployment</a></li>
+              
+                  <li><a href="#overview">Overview</a></li>
+                  
+              
+                  <li><a href="#billing-description">Billing Description</a></li>
+                  
+              
+                  <li><a href="#permissions-required-for-ram-accounts">Permissions required for RAM accounts</a></li>
+                  
+              
+                  <li><a href="#deployment-process">Deployment process</a></li>
+                  
+              
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content theme-github">
+      
+      <div class="content-inner">        
+        
+        <h1 id="weaviate-community-edition-quick-deployment">Weaviate Community Edition Quick Deployment</h1>
+<h2 id="overview">Overview</h2>
+<p>Weaviate allows you to quickly set up a public and private network disk system. Weaviate supports different cloud storage platforms at the bottom, users do not need to care about physical storage methods in actual use. You can use Weaviate to build personal internet disks, file sharing systems, or public cloud systems for large and small groups. For details, please see <a href="https://weaviate.io/developers/weaviate/connections/connect-cloud">Weaviate official website</a>.</p>
+<h2 id="billing-description">Billing Description</h2>
+<p>Fees on the Weaviate Community Edition mainly relate:</p>
+<p>-Selected vCPU and memory specifications
+-System disk type and capacity
+-public network bandwidth</p>
+<h2 id="permissions-required-for-ram-accounts">Permissions required for RAM accounts</h2>
+<p>To deploy Weaviate Community Edition, you need to access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following resources.
+<strong>Note</strong>: This permission is required only when your account is a RAM account.</p>
+<table>
+<thead>
+<tr>
+<th>Permission policy name</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AliyunECSFullAccess</td>
+<td>Permissions to manage ECS instances</td>
+</tr>
+<tr>
+<td>AliyunVPCFullAccess</td>
+<td>Permissions to manage a VPC</td>
+</tr>
+<tr>
+<td>AliyunROSFullAccess</td>
+<td>Manage permissions for Resource Orchestration Service (ROS)</td>
+</tr>
+<tr>
+<td>AliyunComputeNestUserFullAccess</td>
+<td>Manage user-side permissions for the compute nest service (ComputeNest)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deployment-process">Deployment process</h2>
+<ol>
+<li>
+<p>Visit the Weaviate Community Edition Service <a href="https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&amp;ServiceId=service-c6622482694448288847">Deployment Link</a> and fill in the deployment parameters as prompted:
+<img alt="image.png" src="../images-en/1.jpg" /></p>
+</li>
+<li>
+<p>After completing the parameters, you can see the corresponding RFQ details. After confirming the parameters, click <strong>Next: Confirm Order</strong>. Confirm the order and agree to the service agreement and click <strong>Create Now</strong> to enter the deployment phase.</p>
+</li>
+<li>
+<p>After the deployment is complete, enter the service instance management and find the Weaviate service access link in the console.
+<img alt="image.png" src="../images-en/2.jpg" /></p>
+</li>
+<li>
+<p>Click the link to access the service. Refer to <a href="https://weaviate.io/developers/weaviate/connections/connect-custom">Documentation</a> to use the client to access the service.
+<img alt="image.png" src="../images-en/3.jpg" />
+<img alt="image.png" src="../images-en/4.jpg" /></p>
+</li>
+</ol>
+        
+      </div>
+
+      <div class="copyrights">© 2009-2022 Aliyun.com 版权所有</div>
+    </div>
+  </div>
+  
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2026-09-01 01:03:52.703159+00:00
+  -->
+</body>
+</html>
